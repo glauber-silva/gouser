@@ -1,0 +1,45 @@
+# Compiled binary
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Binary directories
+/bin/
+/pkg/
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories
+/vendor/
+/go.sum
+
+# Workspace
+*.iml
+.idea/
+.vscode/
+
+# Build files
+*.o
+*.a
+
+# Test binary, uncomment if you use `go test -cover`
+*.test
+
+# Output of the go coverage tool, use with `go tool cover`
+*.cover
+
+# Custom binary extensions
+# Add any custom binary extensions or output files here if needed
+
+# Ignore configuration files if your API uses them
+# config.yaml
+# .env
+
+# Ignore system-specific temporary files or editor files
+# .DS_Store
+# Thumbs.db
+
+# Logs
+*.log
