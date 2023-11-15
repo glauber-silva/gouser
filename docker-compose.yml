@@ -7,3 +7,24 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    networks:
+      - gousernet
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./scripts/databases/initdb.sql:/docker-entrypoint-initdb.d/01_initdb.sql
+      - ./scripts/databases/run_database.sh:/docker-entrypoint-initdb.d/02_run_database.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      GOUSERS_ADMIN_EMAIL: ${GOUSERS_ADMIN_EMAIL}
+      GOUSERS_ADMIN_PASSWORD: ${GOUSERS_ADMIN_PASSWORD}
+    ports:
+      - "3306:3306"
+    networks:
+      - gousernet
+
+networks:
+  gousernet:
