@@ -14,7 +14,7 @@ services:
     image: mysql:5.7
     volumes:
       - ./scripts/databases/initdb.sql:/docker-entrypoint-initdb.d/01_initdb.sql
-      - ./scripts/databases/run_database.sh:/docker-entrypoint-initdb.d/02_run_database.sh
+      - ./scripts/databases/run_database.sh:/docker-entrypoint-initdb.d/02_config.sh
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_HOST: ${MYSQL_HOST}
