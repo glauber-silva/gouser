@@ -18,16 +18,18 @@ Before you begin, ensure you have met the following requirements:
 To run this project, follow these steps:
 
 1. Copy the `.env.example` file to a new file named `.env`:
-bash```
+```
 cp .env.example .env
 ```
 
-2. Open the `.env` file and replace the dummy values with your actual values.
 
-3. Run the following command to start the Docker Compose services:
-bash```
+3. Open the `.env` file and replace the dummy values with your actual values.
+
+4. Run the following command to start the Docker Compose services:
+```
 docker-compose up
 ```
+
 
 This will start all the services defined in your `docker-compose.yml` file. Your application should now be running and accessible at the configured ports.
 
