@@ -36,4 +36,4 @@ This will start all the services defined in your `docker-compose.yml` file. Your
 
 ## Issue Tracking
 
-I use GitHub issues to track the progress of the API development. You can view the [open issues](https://github.com/glauber-silva/gousers/issues?q=is%3Aopen) and [closed issues](https://github.com/glauber-silva/gousers/issues?q=is%3Aclosed) to see what has been accomplished and what work remains.
+I use GitHub issues to track the progress of the API development. You can view the [open issues](https://github.com/glauber-silva/gouser/issues?q=is%3Aopen+is%3Aissue) and [closed issues](https://github.com/glauber-silva/gouser/issues?q=is%3Aissue+is%3Aclosed) to see what has been accomplished and what work remains.
