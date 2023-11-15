@@ -6,6 +6,4 @@ mysql -u root -p$MYSQL_ROOT_PASSWORD -D gouserdb -e "
 
 -- Grant all privileges to the new user
 GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION;
-
--- here should be script to create an Admin user. This user would be able to see all users from the table users
 "
