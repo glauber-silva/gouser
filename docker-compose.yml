@@ -17,6 +17,9 @@ services:
       - ./scripts/databases/run_database.sh:/docker-entrypoint-initdb.d/02_run_database.sh
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_DB_NAME: ${MYSQL_DB_NAME}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       GOUSERS_ADMIN_EMAIL: ${GOUSERS_ADMIN_EMAIL}

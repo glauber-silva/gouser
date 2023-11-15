@@ -6,7 +6,6 @@
 
 # Binary directories
 /bin/
-/pkg/
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
