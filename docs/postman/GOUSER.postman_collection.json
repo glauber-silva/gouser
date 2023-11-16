@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "6863670f-b015-4100-8f71-510c85d2bdf6",
+		"name": "GOUSER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1034731"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Silva\",\r\n    \"age\": 20,\r\n    \"email\": \"silva@email.com\",\r\n    \"password\": \"XPTO\",\r\n    \"address\": {\r\n        \"street\": \"Rua Silva\",\r\n        \"number\": 321,\r\n        \"complement\": \"AP 321\",\r\n        \"city\": \"Some City\",\r\n        \"state\": \"Some State\",\r\n        \"country\": \"US\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/users/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/health",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Silva\",\r\n    \"age\": 20,\r\n    \"email\": \"silva@email.com\",\r\n    \"password\": \"changing\",\r\n    \"address\": {\r\n        \"id\":1,\r\n        \"street\": \"Rua Silva\",\r\n        \"number\": 321,\r\n        \"complement\": \"AP 321\",\r\n        \"city\": \"Some City\",\r\n        \"state\": \"Some State\",\r\n        \"country\": \"US\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/users/1",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/users/1",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

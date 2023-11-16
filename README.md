@@ -33,6 +33,9 @@ docker-compose up
 
 This will start all the services defined in your `docker-compose.yml` file. Your application should now be running and accessible at the configured ports.
 
+## Postman Collection
+
+You can find the Postman collection for this API in the `docs/postman` directory. You can import this collection into Postman to test the API endpoints.
 
 ## Issue Tracking
 
