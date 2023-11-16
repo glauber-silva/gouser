@@ -38,16 +38,19 @@ func SelectAll(db *sql.DB) ([]User, error) {
 			&u.Email,
 			&u.Password,
 			&u.IsAdmin,
+			&u.AddressID,
 			&u.CreatedAt,
 			&u.UpdatedAt,
 			&u.Deleted,
-			&u.AddressID,
 		)
 
 		if err != nil {
 			return nil, err
 		}
-
+		u.Address, err = GetAddress(db, u.AddressID)
+		if err != nil {
+			return nil, err
+		}
 		users = append(users, u)
 	}
 
