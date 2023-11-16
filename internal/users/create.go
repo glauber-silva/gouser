@@ -15,7 +15,7 @@ func (h *handler) Create(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	addressId, err := InsertAddress(h.db, &u.Address)
+	addressId, err := InsertAddress(h.db, u.Address)
 	if err != nil {
 		http.Error(rw, err.Error(), http.StatusInternalServerError)
 		return

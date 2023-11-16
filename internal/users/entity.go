@@ -48,7 +48,7 @@ type User struct {
 	Email     string    `json:"email"`
 	Password  string    `json:"-"`
 	IsAdmin   bool      `json:"-"`
-	Address   Address   `json:"address"`
+	Address   *Address  `json:"address"`
 	AddressID int64     `json:"-"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`

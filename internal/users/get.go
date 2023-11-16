@@ -30,10 +30,10 @@ func (h *handler) GetByID(rw http.ResponseWriter, r *http.Request) {
 }
 
 func Get(db *sql.DB, id int64) (*User, error) {
-	stmt := `SELECT * FROM "users" WHERE id = $1`
+
+	stmt := `SELECT * FROM users WHERE id = ?`
 
 	row := db.QueryRow(stmt, id)
-
 	var u User
 
 	err := row.Scan(
@@ -43,16 +43,32 @@ func Get(db *sql.DB, id int64) (*User, error) {
 		&u.Email,
 		&u.Password,
 		&u.IsAdmin,
+		&u.AddressID,
 		&u.CreatedAt,
 		&u.UpdatedAt,
 		&u.Deleted,
-		&u.AddressID,
 	)
 
 	if err != nil {
 		return nil, err
 	}
 
+	u.Address, err = GetAddress(db, u.AddressID)
+	if err != nil {
+		return nil, err
+	}
+
 	return &u, nil
 
+}
+
+func GetAddress(db *sql.DB, id int64) (*Address, error) {
+	stmt := `SELECT * FROM addresses WHERE id = ?`
+	row := db.QueryRow(stmt, id)
+	a := new(Address)
+	err := row.Scan(&a.ID, &a.Street, &a.Number, &a.Complement, &a.City, &a.State, &a.Country, &a.PostalCode, &a.CreatedAt, &a.UpdatedAt)
+	if err != nil {
+		return nil, err
+	}
+	return a, nil
 }
