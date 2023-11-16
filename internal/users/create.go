@@ -3,14 +3,11 @@ package users
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
 func (h *handler) Create(rw http.ResponseWriter, r *http.Request) {
 	var u User
-
-	fmt.Println("PRINTANDO: ", r.Body)
 
 	err := json.NewDecoder(r.Body).Decode(&u)
 	if err != nil {
@@ -24,17 +21,14 @@ func (h *handler) Create(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println("addressId: ", addressId)
-
 	u.AddressID = addressId
+
 	userid, err := Insert(h.db, &u)
 	if err != nil {
 		http.Error(rw, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	fmt.Println("userid: ", userid)
-	fmt.Println("u: ", u)
 	u.ID = userid
 	rw.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(rw).Encode(&u)
