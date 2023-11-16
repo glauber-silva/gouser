@@ -3,7 +3,6 @@ package users
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -31,12 +30,12 @@ func (h *handler) GetByID(rw http.ResponseWriter, r *http.Request) {
 }
 
 func Get(db *sql.DB, id int64) (*User, error) {
-	fmt.Println("Processing Get User")
+
 	stmt := `SELECT * FROM users WHERE id = ?`
 
 	row := db.QueryRow(stmt, id)
 	var u User
-	fmt.Println("ROW", row)
+
 	err := row.Scan(
 		&u.ID,
 		&u.Name,
@@ -64,8 +63,6 @@ func Get(db *sql.DB, id int64) (*User, error) {
 }
 
 func GetAddress(db *sql.DB, id int64) (*Address, error) {
-	fmt.Println("Processing Get Address")
-	fmt.Println("ID", id)
 	stmt := `SELECT * FROM addresses WHERE id = ?`
 	row := db.QueryRow(stmt, id)
 	a := new(Address)

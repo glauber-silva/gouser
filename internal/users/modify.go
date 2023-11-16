@@ -3,7 +3,6 @@ package users
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 	"time"
@@ -16,7 +15,7 @@ Modify is a handler that receives a JSON with the fields to be updated
 And updates the User and Address in the database.
 */
 func (h *handler) Modify(rw http.ResponseWriter, r *http.Request) {
-	fmt.Println("Processing Handler Modify")
+
 	u := new(User)
 
 	err := json.NewDecoder(r.Body).Decode(u)
@@ -38,15 +37,12 @@ func (h *handler) Modify(rw http.ResponseWriter, r *http.Request) {
 	}
 
 	if u.Address != nil {
-		fmt.Println("Current Address ", currentUser.AddressID)
-		fmt.Println("Neww Address ", u.Address.ID)
 		if currentUser.AddressID != u.Address.ID {
 			http.Error(rw, "Address does not belong to the user", http.StatusBadRequest)
 			return
 		}
 
 		// another way to do it would be deleting the old address and inserting the new one
-		fmt.Println("Going to update address", "| u.AddressID: ", u.AddressID, "| u.Address> ", u.Address)
 		err = UpdateAddress(h.db, currentUser.AddressID, u.Address)
 		if err != nil {
 			http.Error(rw, err.Error(), http.StatusInternalServerError)
@@ -73,7 +69,6 @@ func (h *handler) Modify(rw http.ResponseWriter, r *http.Request) {
 }
 
 func Update(db *sql.DB, id int64, u *User) error {
-	fmt.Println("UPDATING User", u)
 	u.UpdatedAt = time.Now()
 
 	stmt := `UPDATE users SET name = ?, age = ?, email = ?, updated_at = ?, address_id = ? WHERE id = ?`
@@ -84,8 +79,6 @@ func Update(db *sql.DB, id int64, u *User) error {
 }
 
 func UpdateAddress(db *sql.DB, id int64, a *Address) error {
-	fmt.Println("UPDATING ADDRESS", a)
-	fmt.Println("ID", id)
 	currentAddress, err := GetAddress(db, id)
 	if err != nil {
 		return err
