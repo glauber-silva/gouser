@@ -28,17 +28,31 @@ func New(name string, age int, email string, password string, isAdmin bool, addr
 	return &u, nil
 }
 
+type Address struct {
+	ID         int64     `json:"id"`
+	Street     string    `json:"street"`
+	Number     int       `json:"number"`
+	Complement string    `json:"complement"`
+	City       string    `json:"city"`
+	State      string    `json:"state"`
+	Country    string    `json:"country"`
+	PostalCode string    `json:"postal_code"`
+	CreatedAt  time.Time `json:"created_at"`
+	UpdatedAt  time.Time `json:"updated_at"`
+}
+
 type User struct {
-	ID        int64
-	Name      string
-	Age       int
-	Email     string
-	Password  string
-	IsAdmin   bool
-	AddressID int64
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	Deleted   bool
+	ID        int64     `json:"id"`
+	Name      string    `json:"name"`
+	Age       int       `json:"age"`
+	Email     string    `json:"email"`
+	Password  string    `json:"-"`
+	IsAdmin   bool      `json:"-"`
+	Address   Address   `json:"address"`
+	AddressID int64     `json:"-"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+	Deleted   bool      `json:"-"`
 }
 
 func (u *User) SetPassword(password string) error {

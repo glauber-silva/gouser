@@ -5,25 +5,34 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: ["/app/wait-for-mysql.sh", "mysql", "./user-service"]
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      GOUSERS_ADMIN_EMAIL: ${GOUSERS_ADMIN_EMAIL}
+      GOUSERS_ADMIN_PASSWORD: ${GOUSERS_ADMIN_PASSWORD}
+      SERVER_PORT: ${SERVER_PORT}
     ports:
       - "8080:8080"
     networks:
       - gousernet
+    depends_on:
+      - mysql
 
-  db:
+  mysql:
     image: mysql:5.7
     volumes:
       - ./scripts/databases/initdb.sql:/docker-entrypoint-initdb.d/01_initdb.sql
-      - ./scripts/databases/run_database.sh:/docker-entrypoint-initdb.d/02_config.sh
+      # - ./scripts/databases/config.sh:/docker-entrypoint-initdb.d/02_config.sh
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_HOST: ${MYSQL_HOST}
-      MYSQL_PORT: ${MYSQL_PORT}
-      MYSQL_DB_NAME: ${MYSQL_DB_NAME}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      GOUSERS_ADMIN_EMAIL: ${GOUSERS_ADMIN_EMAIL}
-      GOUSERS_ADMIN_PASSWORD: ${GOUSERS_ADMIN_PASSWORD}
     ports:
       - "3306:3306"
     networks:

@@ -13,9 +13,16 @@ type handler struct {
 func SetRoutes(r chi.Router, db *sql.DB) {
 	h := handler{db}
 
-	r.Post("/", h.Create)
-	r.Put("/{id}", h.Modify)
-	r.Delete("/{id}", h.Delete)
-	r.Get("/{id}", h.GetByID)
-	r.Get("/", h.List)
+	r.Route("/users", func(r chi.Router) {
+		r.Post("/", h.Create)
+
+		r.Group(func(r chi.Router) {
+			r.Put("/{id}", h.Modify)
+			r.Delete("/{id}", h.Delete)
+			r.Get("/{id}", h.GetByID)
+			r.Get("/", h.List)
+		})
+
+	})
+
 }
